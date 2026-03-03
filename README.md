@@ -1,10 +1,41 @@
-1️⃣ Objetivo del análisis
+📊 Predicción de Cancelación de Clientes
+📖 Descripción del Proyecto
 
-El objetivo del proyecto fue desarrollar modelos de machine learning capaces de predecir la cancelación de clientes (rotacion_cliente) e identificar los factores más influyentes en dicha decisión, con el fin de proponer estrategias efectivas de retención.
+Este proyecto tiene como objetivo desarrollar modelos de Machine Learning capaces de predecir la cancelación de clientes y analizar los factores más influyentes en la decisión de abandono.
 
-2️⃣ Modelos Evaluados
+La finalidad es transformar datos históricos en estrategias de retención accionables que permitan reducir la pérdida de clientes y optimizar los recursos comerciales.
 
-Se entrenaron tres modelos de clasificación:
+🎯 Objetivos
+
+Predecir qué clientes tienen alta probabilidad de cancelar.
+
+Comparar distintos modelos de clasificación.
+
+Analizar la importancia de las variables.
+
+Proponer estrategias de retención basadas en datos.
+
+🗂 Dataset
+
+El dataset contiene información demográfica, contractual y de facturación de los clientes, incluyendo:
+
+Tipo de contrato
+
+Antigüedad 
+
+Cargos mensuales
+
+Servicios contratados
+
+Método de pago
+
+Variable objetivo: rotacion_cliente (True/False)
+
+El problema presenta desbalance de clases, por lo que se aplicó SMOTE para balancear la clase minoritaria.
+
+🧠 Modelos Implementados
+
+Se entrenaron y evaluaron tres modelos de clasificación:
 
 Regresión Logística
 
@@ -12,133 +43,107 @@ K-Nearest Neighbors (KNN)
 
 Random Forest
 
-🔎 Resultados comparativos
+Todos los modelos fueron implementados utilizando:
 
-La Regresión Logística detecta más clientes en riesgo (mayor recall).
+Pipeline
 
-Random Forest presenta mejor equilibrio general y mayor capacidad discriminativa (ROC AUC más alto).
+ColumnTransformer
 
-KNN mostró rendimiento similar, pero menor interpretabilidad.
+Normalización (cuando aplica)
 
-Debido a su mejor balance general, Random Forest fue seleccionado como modelo final.
+RandomizedSearchCV para optimización
 
-3️⃣ Variables más influyentes en la cancelación
+Validación cruzada
 
-El análisis de coeficientes (Regresión Logística) y la importancia de variables (Random Forest) permitió identificar los factores más relevantes.
+🏆 Modelo Seleccionado: Random Forest
 
-🔴 Factores que AUMENTAN la probabilidad de cancelación
+Se seleccionó Random Forest por:
 
-1️⃣ Tipo de contrato mensual 
-2️⃣ Cargos mensuales elevados
-3️⃣ Servicios adicionales con alto costo
-4️⃣ Método de pago electrónico automático
-5️⃣ Baja antigüedad
+Mejor ROC AUC
 
-🟢 Factores que REDUCEN la probabilidad de cancelación
+Mejor equilibrio entre recall y precision
 
-1️⃣ Alta antigüedad del cliente 
-2️⃣ Contratos a largo plazo
-3️⃣ Paquetes integrales de servicios
-4️⃣ Pagos automáticos bancarios estables
+Mayor estabilidad
 
-4️⃣ Interpretación estratégica de los factores
-🎯 1. Antigüedad 
+Robustez ante alta dimensionalidad
 
-Es uno de los factores más importantes.
+🔍 Variables Más Importantes
 
-Clientes nuevos tienen mayor probabilidad de cancelar.
+El análisis de coeficientes (Regresión Logística) y la importancia de variables (Random Forest) permitió identificar los factores clave del churn:
 
-🔎 Interpretación:
-Existe una etapa crítica inicial donde el cliente aún no desarrolla lealtad.
+🔴 Factores que aumentan cancelación
 
-🎯 2. Tipo de contrato
+Contratos mensuales 
+Baja antigüedad 
+Cargos mensuales elevados
+Algunos métodos de pago electrónicos
 
-Los contratos mensuales presentan mayor cancelación.
+🟢 Factores que reducen cancelación
 
-🔎 Interpretación:
-La falta de compromiso contractual facilita la salida.
+Contratos a largo plazo (1–2 años)
 
-🎯 3. Cargos mensuales altos
+Alta antigüedad
 
-Clientes con facturación elevada muestran mayor probabilidad de cancelación.
+Paquetes integrales de servicios
 
-🔎 Interpretación:
-Sensibilidad al precio y percepción de bajo valor.
+💡 Estrategias de Retención Propuestas
 
-🎯 4. Métodos de pago específicos
+Programa de fidelización temprana para nuevos clientes
 
-Algunos métodos electrónicos se asocian con mayor cancelación.
+Incentivos para contratos de largo plazo
 
-🔎 Interpretación:
-Puede relacionarse con perfiles más digitales y menos fidelizados.
+Optimización de planes con cargos elevados
 
-5️⃣ Estrategias de retención propuestas
+Activación de campañas predictivas basadas en el score del modelo
 
-Basado en los hallazgos del modelo:
+🛠 Tecnologías Utilizadas
 
-🔵 Estrategia 1: Programa de fidelización temprana
+Python
 
-Dado que la cancelación es mayor en clientes nuevos:
+Pandas
 
-Contacto proactivo en los primeros 3 meses
+NumPy
 
-Encuestas de satisfacción tempranas
+Scikit-learn
 
-Beneficios exclusivos de bienvenida
+Imbalanced-learn (SMOTE)
 
-Objetivo: Reducir cancelación en etapa crítica inicial.
+Matplotlib
 
-🟢 Estrategia 2: Incentivar contratos de largo plazo
+Seaborn
 
-Dado que contratos mensuales presentan mayor cancelación:
+🚀 Cómo Ejecutar el Proyecto
 
-Descuentos por contratos anuales
+Clonar el repositorio:
 
-Beneficios exclusivos por permanencia
+git clone https://github.com/tu_usuario/tu_repositorio.git
 
-Programas de puntos acumulativos
+Instalar dependencias:
 
-Objetivo: Aumentar compromiso contractual.
+pip install -r requirements.txt
 
-🟡 Estrategia 3: Revisión de estructura de precios
+Ejecutar el notebook:
 
-Clientes con cargos altos cancelan más.
+jupyter notebook Proyecto_final.ipynb
+📈 Impacto del Proyecto
 
-Ofrecer paquetes personalizados
+Este modelo permite:
 
-Descuentos escalonados por permanencia
+Detectar clientes en riesgo de cancelación.
 
-Alertas de optimización de plan
+Optimizar recursos en campañas de retención.
 
-Objetivo: Reducir percepción de sobrecosto.
+Tomar decisiones estratégicas basadas en datos.
 
-🔴 Estrategia 4: Segmentación predictiva
+Reducir potencialmente la tasa de churn.
 
-Utilizar el modelo para:
+👩‍💻 Autora
 
-Identificar clientes en riesgo (score > threshold)
-
-Activar campañas específicas de retención
-
-Priorizar recursos en clientes de mayor valor
-
-6️⃣ Conclusiones Generales
-
-1️⃣ La cancelación puede predecirse con buen nivel de precisión (ROC AUC 0.83).
-2️⃣ La antigüedad y el tipo de contrato son los factores más determinantes.
-3️⃣ Random Forest mostró el mejor equilibrio entre capacidad predictiva y estabilidad.
-4️⃣ Las estrategias de retención deben enfocarse especialmente en clientes nuevos y contratos mensuales.
-
-7️⃣ Impacto potencial en negocio
-
-Si el modelo se implementa:
-
-Se puede reducir la tasa de cancelación anticipando clientes en riesgo.
-
-Se optimiza el presupuesto de campañas de retención.
-
-Se mejora la rentabilidad mediante segmentación inteligente.
+Ingrid Catalina Parada Ortega
+Profesional en Comercio Internacional | En transición a Data Science
+Interesada en análisis de datos, visualización y modelos predictivos.
 
 
+Dashboard interactivo para monitoreo del churn.
 
-Este análisis no solo permite predecir la cancelación, sino también comprender los factores estructurales que la impulsan, habilitando decisiones estratégicas basadas en datos.
+Explicabilidad avanzada con SHAP.
